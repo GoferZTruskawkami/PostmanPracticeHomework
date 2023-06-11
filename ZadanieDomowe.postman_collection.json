@@ -1,0 +1,303 @@
+{
+	"info": {
+		"_postman_id": "3a295f9f-e4bc-4d07-b29f-f9b7c6f29f19",
+		"name": "ZadanieDomowe",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27658048",
+		"_collection_link": "https://lunar-comet-703680.postman.co/workspace/New-Team-Workspace~7f5a6ed8-b9db-405a-b72f-9ce0676a620c/collection/27658048-3a295f9f-e4bc-4d07-b29f-f9b7c6f29f19?action=share&creator=27658048&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "OpeningHomePage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check code status\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}",
+					"host": [
+						"{{URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPosts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check code status\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}posts",
+					"host": [
+						"{{URL}}posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostPost",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check userId\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(11);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check title\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Lubie koty\");\r",
+							"   \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Koty są słodkie\");\r",
+							"   \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"userId\": 11,\r\n\r\n    \"title\": \"Lubie koty\",\r\n    \"body\": \"Koty są słodkie\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}posts",
+					"host": [
+						"{{URL}}posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PartialPostUpdate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check userId\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(1);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check Id\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(10);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check title\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"optio molestias id quia eum\");\r",
+							"   \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Koty są SUPER słodkie\");\r",
+							"   \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\": 10,\r\n\r\n    \"body\": \"Koty są SUPER słodkie\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}posts/10",
+					"host": [
+						"{{URL}}posts"
+					],
+					"path": [
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CompletePostUpdate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check userId\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(200);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check Id\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(3);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check title\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Nowy tytuł\");\r",
+							"   \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Tym razem nic o kotach\");\r",
+							"   \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": 200,\r\n    \"id\": 3,\r\n    \"title\": \"Nowy tytuł\",\r\n    \"body\": \"Tym razem nic o kotach\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}posts/3",
+					"host": [
+						"{{URL}}posts"
+					],
+					"path": [
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePost",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check status code\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}posts/5",
+					"host": [
+						"{{URL}}posts"
+					],
+					"path": [
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetDeletedPost",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check status code\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}posts/5",
+					"host": [
+						"{{URL}}posts"
+					],
+					"path": [
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
